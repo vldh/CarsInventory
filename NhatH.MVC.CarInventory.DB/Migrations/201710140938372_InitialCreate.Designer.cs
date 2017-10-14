@@ -13,7 +13,7 @@ namespace NhatH.MVC.CarInventory.DB.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201710140737046_InitialCreate"; }
+            get { return "201710140938372_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

@@ -81,6 +81,7 @@ namespace NhatH.MVC.CarInventory.Core.Framework.IoC
             container.RegisterType<AuthorizationService>().As<IAuthorizationService>().InstancePerRequest();
             container.RegisterType<WebWorkContext>().As<IWebWorkContext>().InstancePerRequest();
             container.RegisterType<AppWorkContext>().As<IAppWorkContext>().InstancePerLifetimeScope();
+            container.RegisterType<CarService>().As<ICarService>().InstancePerRequest();
             container.Register(
                 (c, t) =>
                 {

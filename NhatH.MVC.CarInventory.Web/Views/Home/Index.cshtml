@@ -1,31 +1,88 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<div id="cars-management">
+    <div class="container">
+        <h2 class="row">Cars</h2>
+        <p class="row">Cars inventory</p>
+        <div class="row">
+            <div class="pull-left">
+                <button class="btn btn-default" data-bind="click:showInsertModel" type="button" data-toggle="modal" data-target="#myModal">Create</button>
+            </div>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+            <div class="pull-right">
+                <input data-bind="value:searchText, valueUpdate: 'afterkeydown'" class="form-control" />
+            </div>
+        </div>
+
+        <table class="table row">
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Branch</th>
+                    <th>Price</th>
+                    <th class="col-md-1"></th>
+                    <th class="col-md-1"></th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: cars">
+                <tr data-bind="visible:visible">
+                    <td style="display:none" data-bind="text: id"></td>
+                    <td data-bind="text: model"></td>
+                    <td data-bind="text: brand"></td>
+                    <td data-bind="text: price"></td>
+                    <td><button class="btn btn-default" data-bind="click:$root.showEditModel.bind($data)" type="button" data-toggle="modal" data-target="#myModal">Edit</button></td>
+                    <td><button class="btn btn-default" data-bind="click:$root.deleteCar.bind($data)" type="button">Delete</button></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal Edit and Create -->
+    <div data-bind="visible:isEdit" id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Brach</label>
+                        <div class="input-group">
+                            <input data-bind="value:currentCar().brand" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Model</label>
+                        <div class="input-group">
+                            <input data-bind="value:currentCar().model" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Price</label>
+                        <div class="input-group">
+                            <input data-bind="value:currentCar().price" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" data-bind="click:updateCar">Update</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+<script type="text/javascript">
+    $(function () {
+        var carMangement = new CarManagement();
+        ko.applyBindings(carMangement, document.getElementById('cars-management'));
+        carMangement.getCars();
+    });
+</script>

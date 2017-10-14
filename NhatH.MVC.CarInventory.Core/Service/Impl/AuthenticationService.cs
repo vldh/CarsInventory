@@ -10,7 +10,6 @@ namespace NhatH.MVC.CarInventory.Core.Service.Impl
     {
         private readonly HttpContextBase _httpContext;
         private readonly IMemberService _memberService;
-        //private readonly IFunctionService _functionService;
 
         private UserProfile _cachedUserProfile;
 
@@ -20,11 +19,10 @@ namespace NhatH.MVC.CarInventory.Core.Service.Impl
         /// <param name="httpContext">The HTTP context.</param>
         /// <param name="memberService">The member service.</param>
         /// <param name="functionService">The function service.</param>
-        public AuthenticationService(HttpContextBase httpContext, IMemberService memberService)//, IFunctionService functionService)
+        public AuthenticationService(HttpContextBase httpContext, IMemberService memberService)
         {
             _httpContext = httpContext;
             _memberService = memberService;
-            //_functionService = functionService;
         }
 
         /// <summary>

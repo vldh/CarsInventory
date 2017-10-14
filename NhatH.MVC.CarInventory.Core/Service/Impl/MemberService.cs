@@ -8,9 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Web;
 using WebMatrix.WebData;
 
@@ -19,12 +17,10 @@ namespace NhatH.MVC.CarInventory.Core.Service.Impl
     public class MemberService : IMemberService
     {
         private readonly ICarInventoryUoW _carInventoryUow;
-        //private readonly IEventPublisher _eventPublisher;
 
-        public MemberService(ICarInventoryUoW vrsUow)//, IEventPublisher eventPublisher)
+        public MemberService(ICarInventoryUoW carInventoryUoW)
         {
-            _carInventoryUow = vrsUow;
-            //_eventPublisher = eventPublisher;
+            _carInventoryUow = carInventoryUoW;
         }
 
         #region Local account.

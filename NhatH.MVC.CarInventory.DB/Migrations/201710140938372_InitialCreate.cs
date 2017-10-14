@@ -17,6 +17,7 @@ namespace NhatH.MVC.CarInventory.DB.Migrations
                         Year = c.Int(),
                         Price = c.Decimal(precision: 18, scale: 2),
                         New = c.Boolean(),
+                        User = c.String(),
                     })
                 .PrimaryKey(t => t.ID);
             

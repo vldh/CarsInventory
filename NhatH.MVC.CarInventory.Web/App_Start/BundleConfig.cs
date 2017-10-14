@@ -23,6 +23,16 @@ namespace NhatH.MVC.CarInventory.Web
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/knockoutjs").Include(
+                      "~/Scripts/knockout-3.4.2.js",
+                       "~/Scripts/knockout.mapping-latest.js"
+                     
+                      ));
+
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                      "~/Scripts/app/car-inventory.js"
+                      ));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));

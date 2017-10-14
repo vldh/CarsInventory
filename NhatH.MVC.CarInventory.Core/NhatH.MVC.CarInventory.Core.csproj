@@ -101,6 +101,7 @@
     <Compile Include="Core\Model\Mapper\Credential\UserModel.cs" />
     <Compile Include="Core\Model\Mapper\Credential\UserProfileModel.cs" />
     <Compile Include="Core\Model\Mapper\Function\RoleFunctionModel.cs" />
+    <Compile Include="Core\Model\Mapper\Inventory\CarModel.cs" />
     <Compile Include="Core\Model\Mapper\Validator\ChangePasswordValidator.cs" />
     <Compile Include="Core\Model\Mapper\Validator\LoginModelValidator.cs" />
     <Compile Include="Core\Model\Mapper\Validator\RoleModelValidator.cs" />
@@ -116,12 +117,14 @@
     <Compile Include="Service\CarInventoryServiceFactory.cs" />
     <Compile Include="Service\Contract\IAuthenticationService.cs" />
     <Compile Include="Service\Contract\IAuthorizationService.cs" />
+    <Compile Include="Service\Contract\ICarService.cs" />
     <Compile Include="Service\Contract\IFunctionService.cs" />
     <Compile Include="Service\Contract\IMemberService.cs" />
     <Compile Include="Service\ICarInventoryService.cs" />
     <Compile Include="Service\ICarInventoryServiceFactory.cs" />
     <Compile Include="Service\Impl\AuthenticationService.cs" />
     <Compile Include="Service\Impl\AuthorizationService.cs" />
+    <Compile Include="Service\Impl\CarService.cs" />
     <Compile Include="Service\Impl\MemberService.cs" />
   </ItemGroup>
   <ItemGroup />
