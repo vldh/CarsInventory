@@ -6,6 +6,8 @@ using NhatH.MVC.CarInventory.Core.Framework;
 using NhatH.MVC.CarInventory.Core.Service.Contract;
 using NhatH.MVC.CarInventory.Web.App_Start;
 using NhatH.MVC.CarInventory.Web.Models;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -37,7 +39,8 @@ namespace NhatH.MVC.CarInventory.Web.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            if (_authenticationService.IsLoggedin()) {
+            if (_authenticationService.IsLoggedin())
+            {
                 return (ActionResult)RedirectToAction("Index", "Home");
             }
             return View();
@@ -56,17 +59,13 @@ namespace NhatH.MVC.CarInventory.Web.Controllers
             }
             if (_authenticationService.SignIn(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
-                //is is admin  dont need check passowrd expiration
-                if (_authorizationService.IsSuperAdmin(model.UserName))
-                {
-                    return string.IsNullOrEmpty(returnUrl) ? (ActionResult)RedirectToAction("Index", "Home") : Redirect(returnUrl);
-                }
+                return string.IsNullOrEmpty(returnUrl) ? (ActionResult)RedirectToAction("Index", "Home") : Redirect(returnUrl);
             }
             return View(model);
         }
 
-       
-       
+
+
         //
         // GET: /Account/Register
         [AllowAnonymous]
@@ -77,33 +76,65 @@ namespace NhatH.MVC.CarInventory.Web.Controllers
 
         //
         // POST: /Account/Register
-        //[HttpPost]
-        //[AllowAnonymous]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Register(RegisterViewModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        //var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-        //        //var result = await UserManager.CreateAsync(user, model.Password);
-        //        //if (result.Succeeded)
-        //        //{
-        //        //    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = _memberService.GetUser(model.UserName);
+                if (user != null)
+                {
+                    AddErrors(new IdentityResult("Duplicate user name. Please try another."));
+                }
+                else
+                {
+                    var role = _memberService.GetRoleByRole("System Manager");
+                    if (role == null)
+                    {
+                        AddErrors(new IdentityResult("Role Not Found."));
+                    }
+                    else
+                    {
+                        var userModel = new UserModel()
+                        {
+                            UserName = model.UserName,
+                            PassWord = model.Password,
+                            UserProfiles = new Collection<UserProfileModel>(new List<UserProfileModel>(){new UserProfileModel()
+                        {
+                            Email = model.Email,
+                            IsActived = true,
+                            Name = model.UserName,
+                            IsNotDeletable = false
+                        }}),
 
-        //        //    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-        //        //    // Send an email with this link
-        //        //    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-        //        //    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-        //        //    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                            Roles = new Collection<RoleModel>(new List<RoleModel>() { new RoleModel() { Id = role.Id } })
+                        };
 
-        //        //    return RedirectToAction("Index", "Home");
-        //        //}
-        //        //AddErrors(result);
-        //    }
+                        var createUserState = _memberService.CreateUser(userModel);
+                        if (createUserState == Core.Core.Model.Type.ResultType.Success)
+                        {
+                            if (_authenticationService.SignIn(model.UserName, model.Password, persistCookie: true))
+                            {
+                                return RedirectToAction("Index", "Home");
+                            }
+                            else
+                            {
+                                AddErrors(new IdentityResult("An Error Occurred. please contact your administrator."));
+                            }
+                        }
+                        else
+                        {
+                            AddErrors(new IdentityResult("An Error Occurred. please contact your administrator."));
+                        }
+                    }
 
-        //    // If we got this far, something failed, redisplay form
-        //    return View(model);
-        //}
+                }
+            }
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
 
         //
         // GET: /Account/ForgotPassword
@@ -113,7 +144,7 @@ namespace NhatH.MVC.CarInventory.Web.Controllers
             return View();
         }
 
-  
+
         //
         // GET: /Account/ForgotPasswordConfirmation
         [AllowAnonymous]
@@ -130,7 +161,7 @@ namespace NhatH.MVC.CarInventory.Web.Controllers
             return code == null ? View("Error") : View();
         }
 
-        
+
         //
         // GET: /Account/ResetPasswordConfirmation
         [AllowAnonymous]
@@ -150,7 +181,7 @@ namespace NhatH.MVC.CarInventory.Web.Controllers
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
 
-        
+
 
         //
         // POST: /Account/LogOff
@@ -175,7 +206,7 @@ namespace NhatH.MVC.CarInventory.Web.Controllers
         {
             if (disposing)
             {
-                
+
             }
 
             base.Dispose(disposing);
