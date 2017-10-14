@@ -12,8 +12,12 @@ namespace NhatH.MVC.CarInventory.DB
 {
     public class CarInventoryDBContext : DbContext
     {
-        public CarInventoryDBContext(string connectionString) : base(connectionString) { }
-        public CarInventoryDBContext() : base("DefaultConnection") { }
+        public CarInventoryDBContext(string connectionString) : base(connectionString) {
+            Database.SetInitializer<CarInventoryDBContext>(new CreateDatabaseIfNotExists<CarInventoryDBContext>());
+        }
+        public CarInventoryDBContext() : base("DefaultConnection") {
+            Database.SetInitializer<CarInventoryDBContext>(new CreateDatabaseIfNotExists<CarInventoryDBContext>());
+        }
 
         public DbSet<Car> Cars { get; set; }
 

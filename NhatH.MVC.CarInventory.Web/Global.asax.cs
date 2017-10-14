@@ -13,7 +13,7 @@ namespace NhatH.MVC.CarInventory.Web
         {
             var installDatabase =
               new InstallDatabase(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-            installDatabase.CreateDatabase();
+            //installDatabase.CreateDatabase();
             installDatabase.InitializerDatabase();
             installDatabase.UpdateDatabase();
 
