@@ -1,0 +1,35 @@
+﻿@using NhatH.MVC.CarInventory.Core.Core.Model.Mapper.Credential
+@model LoginModel
+@{
+    ViewBag.Title = "Log in";
+}
+@Styles.Render("~/Content/SignInCss")
+
+<div class="row">
+    <section id="loginForm">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin", role = "form" }))
+            {
+            @Html.AntiForgeryToken()
+            <h2 class="form-signin-heading">Please sign in</h2>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.LabelFor(m => m.UserName, new { @class = "sr-only" })
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Username" })
+                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                @Html.LabelFor(m => m.Password, new { @class = "sr-only" })
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                <div class="checkbox">
+                    @Html.CheckBoxFor(m => m.RememberMe)
+                    @Html.LabelFor(m => m.RememberMe)
+                </div>
+
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+        }
+    </section>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
