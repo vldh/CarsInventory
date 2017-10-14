@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/packages
+/.vs
+/NhatH.MVC.CarInventory.Core/bin/Debug
+/NhatH.MVC.CarInventory.Core/obj/Debug
+/NhatH.MVC.CarInventory.DB/bin/Debug
+/NhatH.MVC.CarInventory.DB/obj/Debug
+/NhatH.MVC.CarInventory.Domain/bin/Debug
+/NhatH.MVC.CarInventory.Domain/obj/Debug
+/NhatH.MVC.CarInventory.Web/bin
+/NhatH.MVC.CarInventory.Web/obj/Debug
