@@ -30,7 +30,8 @@ namespace NhatH.MVC.CarInventory.Web
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                      "~/Scripts/app/car-inventory.js"
+                      "~/Scripts/app/car-inventory.js",
+                      "~/Scripts/app/init.js"
                       ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

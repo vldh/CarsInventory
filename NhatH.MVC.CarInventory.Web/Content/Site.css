@@ -1,6 +1,13 @@
-﻿body {
+﻿html {
+    overflow: hidden;
+    height: 100%;
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+    overflow: auto;
+    height: 100%;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -56,3 +63,22 @@ body {
     padding: 0 15px;
 }
 
+.table td.fit,
+.table th.fit {
+    white-space: nowrap;
+    width: 1%;
+}
+
+body.modal-open, .modal-open .navbar-fixed-top, .modal-open .navbar-fixed-bottom {
+    margin-right: 0px;
+}
+/* unset bs3 setting */
+.modal {
+    overflow-y: hidden;
+}
+.bs-car-form .input-group {
+    margin-bottom: 10px;
+}
+.input-group-addon {
+    min-width: 70px;
+}

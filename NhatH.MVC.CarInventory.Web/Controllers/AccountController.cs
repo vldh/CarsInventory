@@ -61,6 +61,10 @@ namespace NhatH.MVC.CarInventory.Web.Controllers
             {
                 return string.IsNullOrEmpty(returnUrl) ? (ActionResult)RedirectToAction("Index", "Home") : Redirect(returnUrl);
             }
+            else
+            {
+                AddErrors(new IdentityResult("Wrong username or password. Please try again."));
+            }
             return View(model);
         }
 

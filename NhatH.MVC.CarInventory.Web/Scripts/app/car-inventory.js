@@ -4,6 +4,7 @@
     self.brand = ko.observable();
     self.model = ko.observable();
     self.price = ko.observable();
+    self.year = ko.observable();
     self.visible = ko.observable(true);
     self.init = function ()
     {
@@ -13,6 +14,7 @@
             self.brand(car.Brand); //todo: make json controller return Camel case
             self.model(car.Model);
             self.price(car.Price);
+            self.year(car.Year);
         }
     }
 

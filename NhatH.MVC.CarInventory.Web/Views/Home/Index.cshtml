@@ -2,27 +2,26 @@
     ViewBag.Title = "Home Page";
 }
 <div id="cars-management">
-    <div class="container">
-        <h2 class="row">Cars</h2>
-        <p class="row">Cars inventory</p>
-        <div class="row">
+    <div class="col-md-12">
+        <p>Cars inventory</p>
+        <div>
             <div class="pull-left">
-                <button class="btn btn-default" data-bind="click:showInsertModel" type="button" data-toggle="modal" data-target="#myModal">Create</button>
+                <button class="btn btn-primary" data-bind="click:showInsertModel" type="button" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create</button>
             </div>
 
             <div class="pull-right">
-                <input data-bind="value:searchText, valueUpdate: 'afterkeydown'" class="form-control" />
+                <input data-bind="value:searchText, valueUpdate: 'afterkeydown'" class="form-control" placeholder="Search..." />
             </div>
         </div>
 
-        <table class="table row">
+        <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Model</th>
-                    <th>Branch</th>
-                    <th>Price</th>
-                    <th class="col-md-1"></th>
-                    <th class="col-md-1"></th>
+                    <th class="col-md-3">Model</th>
+                    <th class="col-md-3">Brand</th>
+                    <th class="col-md-2">Year</th>
+                    <th class="col-md-3">Price</th>
+                    <th class="fit"></th>
                 </tr>
             </thead>
             <tbody data-bind="foreach: cars">
@@ -30,9 +29,9 @@
                     <td style="display:none" data-bind="text: id"></td>
                     <td data-bind="text: model"></td>
                     <td data-bind="text: brand"></td>
+                    <td data-bind="text: year"></td>
                     <td data-bind="text: price"></td>
-                    <td><button class="btn btn-default" data-bind="click:$root.showEditModel.bind($data)" type="button" data-toggle="modal" data-target="#myModal">Edit</button></td>
-                    <td><button class="btn btn-default" data-bind="click:$root.deleteCar.bind($data)" type="button">Delete</button></td>
+                    <td class="fit"><button class="btn btn-default" data-bind="click:$root.showEditModel.bind($data)" type="button" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>&nbsp;<button class="btn btn-default" data-bind="click:$root.deleteCar.bind($data)" type="button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
                 </tr>
 
             </tbody>
@@ -45,32 +44,28 @@
 
             <!-- Modal content-->
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
-                </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Brach</label>
+                    <div class="bs-car-form ">
                         <div class="input-group">
-                            <input data-bind="value:currentCar().brand" />
+                            <span class="input-group-addon" id="basic-addon-brand">Brand</span>
+                            <input type="text" data-bind="value:currentCar().brand" autofocus class="form-control" id="brand" aria-describedby="basic-addon-brand">
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Model</label>
                         <div class="input-group">
-                            <input data-bind="value:currentCar().model" />
+                            <span class="input-group-addon" id="basic-addon-model">Model</span>
+                            <input type="text" class="form-control" id="model" data-bind="value:currentCar().model" aria-describedby="basic-addon-model">
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Price</label>
                         <div class="input-group">
-                            <input data-bind="value:currentCar().price" />
+                            <span class="input-group-addon" id="basic-addon-year">Year</span>
+                            <input type="text" class="form-control" id="year" data-bind="value:currentCar().year" aria-describedby="basic-addon-year">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon-price">Price</span>
+                            <input type="text" class="form-control" id="price" data-bind="value:currentCar().price" aria-describedby="basic-addon-price">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" data-bind="click:updateCar">Update</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" data-bind="click:updateCar"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Save</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
