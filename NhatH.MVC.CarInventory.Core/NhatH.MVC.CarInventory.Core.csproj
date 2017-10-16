@@ -51,6 +51,9 @@
     <Reference Include="FluentValidation.Mvc, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentValidation.Mvc5.7.0.0\lib\net45\FluentValidation.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
@@ -92,6 +95,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Helper\Logger.cs" />
     <Compile Include="Core\Model\Extension\AutoMapperExtension.cs" />
     <Compile Include="Core\Model\Extension\CollectionExtension.cs" />
     <Compile Include="Core\Model\Mapper\BaseModel.cs" />
@@ -101,6 +105,7 @@
     <Compile Include="Core\Model\Mapper\Credential\UserModel.cs" />
     <Compile Include="Core\Model\Mapper\Credential\UserProfileModel.cs" />
     <Compile Include="Core\Model\Mapper\Function\RoleFunctionModel.cs" />
+    <Compile Include="Core\Model\Mapper\Inventory\CarModel.cs" />
     <Compile Include="Core\Model\Mapper\Validator\ChangePasswordValidator.cs" />
     <Compile Include="Core\Model\Mapper\Validator\LoginModelValidator.cs" />
     <Compile Include="Core\Model\Mapper\Validator\RoleModelValidator.cs" />
@@ -116,12 +121,14 @@
     <Compile Include="Service\CarInventoryServiceFactory.cs" />
     <Compile Include="Service\Contract\IAuthenticationService.cs" />
     <Compile Include="Service\Contract\IAuthorizationService.cs" />
+    <Compile Include="Service\Contract\ICarService.cs" />
     <Compile Include="Service\Contract\IFunctionService.cs" />
     <Compile Include="Service\Contract\IMemberService.cs" />
     <Compile Include="Service\ICarInventoryService.cs" />
     <Compile Include="Service\ICarInventoryServiceFactory.cs" />
     <Compile Include="Service\Impl\AuthenticationService.cs" />
     <Compile Include="Service\Impl\AuthorizationService.cs" />
+    <Compile Include="Service\Impl\CarService.cs" />
     <Compile Include="Service\Impl\MemberService.cs" />
   </ItemGroup>
   <ItemGroup />

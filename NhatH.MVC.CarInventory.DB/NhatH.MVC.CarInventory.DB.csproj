@@ -52,9 +52,9 @@
     <Compile Include="Mapping\RoleMapping.cs" />
     <Compile Include="Mapping\UserMapping.cs" />
     <Compile Include="Mapping\UserProfileMapping.cs" />
-    <Compile Include="Migrations\201710140737046_InitialCreate.cs" />
-    <Compile Include="Migrations\201710140737046_InitialCreate.Designer.cs">
-      <DependentUpon>201710140737046_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201710160728123_Initialized.cs" />
+    <Compile Include="Migrations\201710160728123_Initialized.Designer.cs">
+      <DependentUpon>201710160728123_Initialized.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Miscellaneous\IRepositoryFactories.cs" />
@@ -78,8 +78,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710140737046_InitialCreate.resx">
-      <DependentUpon>201710140737046_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710160728123_Initialized.resx">
+      <DependentUpon>201710160728123_Initialized.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

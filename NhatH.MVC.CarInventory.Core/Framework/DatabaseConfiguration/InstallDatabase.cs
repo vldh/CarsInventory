@@ -57,20 +57,7 @@ namespace NhatH.MVC.CarInventory.Core.Framework.DatabaseConfiguration
             {
                 //parse database name
 
-                var builder = new SqlConnectionStringBuilder(_nameOrConnectionString);
-                string databaseName = builder.InitialCatalog;
-                //now create connection string to 'master' dabatase. It always exists.
-                builder.InitialCatalog = "CarInventory";
-                string masterCatalogConnectionString = builder.ToString();
-                string query = string.Format("CREATE DATABASE [{0}]", databaseName);
-                using (var conn = new SqlConnection(masterCatalogConnectionString))
-                {
-                    conn.Open();
-                    using (var command = new SqlCommand(query, conn))
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                }
+                
             }
             catch (Exception ex)
             {

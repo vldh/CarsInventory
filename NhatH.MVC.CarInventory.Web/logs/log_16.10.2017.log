@@ -1,0 +1,19 @@
+2017-10-16 00:24:29,638 [7] ERROR NhatH.MVC.CarInventory.Core.Core.Helper.Logger [(null)] - An error was occurred on application.
+System.InvalidOperationException: The model backing the 'CarInventoryDBContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+   at System.Data.Entity.CreateDatabaseIfNotExists`1.InitializeDatabase(TContext context)
+   at System.Data.Entity.Internal.InternalContext.<>c__DisplayClassf`1.<CreateInitializationAction>b__e()
+   at System.Data.Entity.Internal.InternalContext.PerformInitializationAction(Action action)
+   at System.Data.Entity.Internal.InternalContext.PerformDatabaseInitialization()
+   at System.Data.Entity.Internal.LazyInternalContext.<InitializeDatabase>b__4(InternalContext c)
+   at System.Data.Entity.Internal.RetryAction`1.PerformAction(TInput input)
+   at System.Data.Entity.Internal.LazyInternalContext.InitializeDatabaseAction(Action`1 action)
+   at System.Data.Entity.Internal.LazyInternalContext.InitializeDatabase()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_Local()
+   at System.Data.Entity.DbSet`1.get_Local()
+   at NhatH.MVC.CarInventory.DB.Repository.BaseRepository`1.FindFirstOfDefault(Expression`1 criteria, String[] includes) in C:\Projects\GIT\CarsInventory\NhatH.MVC.CarInventory.DB\Repository\BaseRepository.cs:line 144
+   at NhatH.MVC.CarInventory.Core.Service.Impl.MemberService.GetRoleByRole(String roleName) in C:\Projects\GIT\CarsInventory\NhatH.MVC.CarInventory.Core\Service\Impl\MemberService.cs:line 430
+   at NhatH.MVC.CarInventory.Web.App_Start.InitializeSimpleMembershipAttribute.SimpleMembershipInitializer.CreateRole() in C:\Projects\GIT\CarsInventory\NhatH.MVC.CarInventory.Web\App_Start\InitializeSimpleMembershipAttribute.cs:line 72
+   at NhatH.MVC.CarInventory.Web.App_Start.InitializeSimpleMembershipAttribute.SimpleMembershipInitializer..ctor() in C:\Projects\GIT\CarsInventory\NhatH.MVC.CarInventory.Web\App_Start\InitializeSimpleMembershipAttribute.cs:line 35

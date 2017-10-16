@@ -8,11 +8,13 @@ namespace NhatH.MVC.CarInventory.DB.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
             //Check if any migration pending to run, this can happen if database doesn't exists or if any change in the shcema
             var migrator = new DbMigrator(this);
             var _pendingMigrations = migrator.GetPendingMigrations().Any();
             //If ther are penidng migrations run migrate.Update() to create/Update the database then run the Seed() method to populate the needed data
-            if (_pendingMigrations) {
+            if (_pendingMigrations)
+            {
                 migrator.Update();
                 Seed(new CarInventoryDBContext());
             }

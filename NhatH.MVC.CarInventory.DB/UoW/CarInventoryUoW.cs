@@ -165,12 +165,12 @@ namespace NhatH.MVC.CarInventory.DB.UoW
 
         public IEnumerable<T> ExecuteRawSql<T>(string sql)
         {
-            var vrsContext = DbContext as CarInventoryDBContext;
+            var carInventoryContext = DbContext as CarInventoryDBContext;
             if (DbContext != null)
             {
                 var timeout = 1000 * 60 * 10;
-                vrsContext.Database.CommandTimeout = timeout;
-                return new List<T>(vrsContext.Database.SqlQuery<T>(sql));
+                carInventoryContext.Database.CommandTimeout = timeout;
+                return new List<T>(carInventoryContext.Database.SqlQuery<T>(sql));
             }
             return null;
         }

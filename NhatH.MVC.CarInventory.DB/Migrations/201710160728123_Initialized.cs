@@ -3,7 +3,7 @@ namespace NhatH.MVC.CarInventory.DB.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Initialized : DbMigration
     {
         public override void Up()
         {
@@ -16,7 +16,8 @@ namespace NhatH.MVC.CarInventory.DB.Migrations
                         Model = c.String(nullable: false, maxLength: 100),
                         Year = c.Int(),
                         Price = c.Decimal(precision: 18, scale: 2),
-                        New = c.Boolean(),
+                        IsNew = c.Boolean(),
+                        User = c.String(),
                     })
                 .PrimaryKey(t => t.ID);
             

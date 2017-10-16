@@ -1,31 +1,99 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Inventory Page";
 }
+<div id="cars-management">
+    <div class="col-md-12">
+        <h2 class="form-signin-heading">Inventory</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="pull-left">
+                    <button class="btn btn-primary" data-bind="click:showInsertModel" type="button" data-toggle="modal" data-target="#editCarModel"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create</button>
+                </div>
+            </div>
+            <div class="col-md-6">
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+            </div>
+            <div class="col-md-3">
+                <div class="pull-right search-box">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon-search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search for</span>
+                        <input type="text" data-bind="value:query, valueUpdate:'afterkeydown'" class="form-control" id="search" placeholder="Brand or Model" aria-describedby="basic-addon-search">
+                    </div>
+                </div>
+            </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+
+        </div>
+
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="col-md-3">Brand</th>
+                        <th class="col-md-3">Model</th>
+                        <th class="col-md-2">Year</th>
+                        <th class="col-md-3">Price</th>
+                        <th class="fit"></th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: filteredCars">
+                    <tr data-bind="visible:visible">
+                        <td style="display:none" data-bind="text: id"></td>
+                        <td data-bind="text: brand"></td>
+                        <td data-bind="text: model"></td>
+                        <td data-bind="text: year"></td>
+                        <td data-bind="text: price"></td>
+                        <td class="fit"><button class="btn btn-default" data-bind="click:$root.showEditModel.bind($data)" type="button" data-toggle="modal" data-target="#editCarModel"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>&nbsp;<button class="btn btn-default" data-bind="click:$root.deleteCar.bind($data)" type="button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+
+    <div data-bind="with: currentCar">
+        <!-- Modal Edit and Create -->
+        <div id="editCarModel" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Car Information</h4>
+                    </div>
+                    <div class="modal-body form-horizontal">
+                        <div class="bs-car-form ">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon-brand">Brand</span>
+                                <input type="text" data-bind="value:brand, valueUpdate:'afterkeydown'" autofocus class="form-control" id="brand" aria-describedby="basic-addon-brand">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon-model">Model</span>
+                                <input type="text" class="form-control" id="model" data-bind="value:model, valueUpdate:'afterkeydown'" aria-describedby="basic-addon-model">
+                            </div>
+                            <div class="input-group date" id="datetimepickerYear">
+                                <span class="input-group-addon" id="basic-addon-year">Year</span>
+                                <input type="text" class="form-control" id="year" data-bind="value:year, valueUpdate:'afterkeydown'" aria-describedby="basic-addon-year">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon-price">Price</span>
+                                <input type="text" class="form-control" id="price" data-bind="value:price, valueUpdate:'afterkeydown'" aria-describedby="basic-addon-price">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon beautiful" id="basic-addon-new"><input type="checkbox" id="isNew" data-bind="checked:isNew" aria-describedby="basic-addon-new"></span>
+                                <input type="text" class="form-control" disabled="disabled" value="Is brand new car?" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bind="click:$parent.updateCar"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Save</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+
 </div>

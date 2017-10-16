@@ -12,6 +12,8 @@ namespace NhatH.MVC.CarInventory.Domain
         public string Model { get; set; }
         public int Year { get; set; }
         public decimal Price { get; set; }
-        public bool New { get; set; }
+        public bool IsNew { get; set; }
+        public string User { get; set; }
+
     }
 }
