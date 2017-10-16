@@ -13,6 +13,6 @@ namespace NhatH.MVC.CarInventory.Core.Core.Model.Mapper.Inventory
         [DisplayName("CarModel.Price")]
         public decimal Price { get; set; }
         [DisplayName("CarModel.New")]
-        public bool New { get; set; }
+        public bool IsNew { get; set; }
     }
 }

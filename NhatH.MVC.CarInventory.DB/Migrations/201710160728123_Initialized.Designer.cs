@@ -7,13 +7,13 @@ namespace NhatH.MVC.CarInventory.DB.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class InitialCreate : IMigrationMetadata
+    public sealed partial class Initialized : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initialized));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710140938372_InitialCreate"; }
+            get { return "201710160728123_Initialized"; }
         }
         
         string IMigrationMetadata.Source

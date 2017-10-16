@@ -1,15 +1,11 @@
 ﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using NhatH.MVC.CarInventory.Core.Core.Model.Mapper.Credential;
-using NhatH.MVC.CarInventory.Core.Framework;
 using NhatH.MVC.CarInventory.Core.Service.Contract;
 using NhatH.MVC.CarInventory.Web.App_Start;
 using NhatH.MVC.CarInventory.Web.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -20,17 +16,12 @@ namespace NhatH.MVC.CarInventory.Web.Controllers
     {
 
         private readonly IAuthenticationService _authenticationService;
-        private readonly IAuthorizationService _authorizationService;
         private readonly IMemberService _memberService;
-        private readonly IWorkContext _workContext;
 
-        public AccountController(IMemberService memberService, IAuthenticationService authenticationService,
-                                 IWorkContext workContext, IAuthorizationService authorizationService)
+        public AccountController(IMemberService memberService, IAuthenticationService authenticationService)
         {
             _authenticationService = authenticationService;
-            _authorizationService = authorizationService;
             _memberService = memberService;
-            _workContext = workContext;
         }
 
         //

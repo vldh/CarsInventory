@@ -1,4 +1,5 @@
-﻿using NhatH.MVC.CarInventory.Core.Core.Model.Mapper.Inventory;
+﻿using NhatH.MVC.CarInventory.Core.Core.Helper;
+using NhatH.MVC.CarInventory.Core.Core.Model.Mapper.Inventory;
 using NhatH.MVC.CarInventory.Core.Service.Contract;
 using NhatH.MVC.CarInventory.DB.UoW;
 using NhatH.MVC.CarInventory.Domain;
@@ -19,7 +20,7 @@ namespace NhatH.MVC.CarInventory.Core.Service.Impl
         public IQueryable<Car> GetCars()
         {
             string userName = HttpContext.Current.User.Identity.Name.ToLower(Thread.CurrentThread.CurrentCulture);
-            return _carInventoryUow.Car.Find(c => c.User == userName);
+            return _carInventoryUow.Car.Find(c => c.User == userName).OrderBy(c => c.Brand).ThenBy(c => c.Model);
         }
 
         public bool InsertedCar(CarModel model)
@@ -31,15 +32,16 @@ namespace NhatH.MVC.CarInventory.Core.Service.Impl
                 {
                     Model = model.Model,
                     Brand = model.Brand,
-                    New = model.New,
+                    IsNew = model.IsNew,
                     Price = model.Price,
                     Year = model.Year,
-                    User = userName.ToLower(Thread.CurrentThread.CurrentCulture)
+                    User = userName
                 });
                 _carInventoryUow.Commit();
             }
             catch (Exception exc)
             {
+                exc.Error("An error was occurred when inserting a car");
                 return false;
             }
             return true;
@@ -55,10 +57,9 @@ namespace NhatH.MVC.CarInventory.Core.Service.Impl
                 {
                     car.Model = model.Model;
                     car.Brand = model.Brand;
-                    car.New = model.New;
+                    car.IsNew = model.IsNew;
                     car.Price = model.Price;
                     car.Year = model.Year;
-                    car.User = userName;
                     _carInventoryUow.Car.Update(car);
                     _carInventoryUow.Commit();
                 }
@@ -66,6 +67,7 @@ namespace NhatH.MVC.CarInventory.Core.Service.Impl
             }
             catch (Exception exc)
             {
+                exc.Error("An error was occurred when updating an existing car");
                 return false;
             }
             return true;
@@ -85,6 +87,7 @@ namespace NhatH.MVC.CarInventory.Core.Service.Impl
             }
             catch (Exception exc)
             {
+                exc.Error("An error was occurred when deleting an existing car");
                 return false;
             }
             return true;

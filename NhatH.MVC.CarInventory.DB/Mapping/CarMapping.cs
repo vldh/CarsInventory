@@ -13,7 +13,7 @@ namespace NhatH.MVC.CarInventory.DB.Mapping
             Property(c => c.Model).IsRequired().HasMaxLength(100);
             Property(c => c.Year).IsOptional();
             Property(c=>c.Price).IsOptional();
-            Property(c => c.New).IsOptional();
+            Property(c => c.IsNew).IsOptional();
             Property(c => c.User).IsOptional();
         }
     }

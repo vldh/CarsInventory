@@ -1,11 +1,5 @@
 ﻿using NhatH.MVC.CarInventory.Core.Core.Model.Mapper.Inventory;
 using NhatH.MVC.CarInventory.Core.Service.Contract;
-using NhatH.MVC.CarInventory.DB.UoW;
-using NhatH.MVC.CarInventory.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace NhatH.MVC.CarInventory.Web.Controllers
@@ -30,20 +24,20 @@ namespace NhatH.MVC.CarInventory.Web.Controllers
 
         public JsonResult DeleteCar(int carId)
         {
-            _carService.DeleteCar(carId);
-            return Json(new { result = true });
+           var action =  _carService.DeleteCar(carId);
+            return Json(new { result = action });
         }
 
         public JsonResult InsertCar(CarModel car)
         {
-            _carService.InsertedCar(car);
-            return Json(new { result = true });
+            var action = _carService.InsertedCar(car);
+            return Json(new { result = action });
         }
 
         public JsonResult EditCar(CarModel car)
         {
-            _carService.UpdateCar(car);
-            return Json(new { result = true });
+            var action =_carService.UpdateCar(car);
+            return Json(new { result = action });
         }
     }
 }
